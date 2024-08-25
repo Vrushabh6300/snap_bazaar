@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header, .footer {
+            color: #333;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .order-details {
+            margin: 20px 0;
+        }
+        .order-details h2 {
+            color: #333;
+        }
+        .order-details p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .products-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .products-table th, .products-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .products-table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .total-amount {
+            text-align: right;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Order Confirmation</h1>
+    </div>
+
+    <div class="order-details">
+        <h2>Hello, <span th:text="${customerName}"></span></h2>
+        <p>Thank you for your order!</p>
+        <p>Order Reference: <strong th:text="${orderReference}">#</strong></p>
+    </div>
+
+    <table class="products-table">
+        <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.quantity}"></td>
+            <td th:text="${product.price}">₹</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="total-amount">
+        <p>Total Amount: <strong th:text="${totalAmount}">₹</strong></p>
+    </div>
+
+    <div class="footer">
+        <p>Thank you for shopping with us!</p>
+        <p>&copy; 2024 E-commerce App</p>
+    </div>
+</div>
+</body>
+</html>
